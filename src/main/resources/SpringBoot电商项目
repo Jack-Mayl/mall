@@ -1,0 +1,26 @@
+# SpringBoot电商项目介绍
+* 重量级的电商项目，前后端彻底分离
+* 体验企业级开发流程：需求分析，设计，编码，测试，上线
+* 用户管理，商品分类，商品管理，购物车，订单等核心功能
+* 数据库设计与实现
+* 应用RESTful进行接口设计，并使用postman进行接口测试
+* 应用MyBatis generator代码自动生产插件，提升开发效率
+* 使用腾讯云/阿里云部署
+* 使用Swagger2构建强大的API文档
+* 使用Redis对商品分类信息进行缓存
+
+## 用户模块知识点
+* 登陆
+* 注册
+* 重名校验
+* 密码加密存储
+* Session的使用
+* 越权校验
+* 统一响应对象
+* 异常枚举
+* Java异常体系
+* Postnam实操
+* 统一异常处理
+* 更新个人信息AdminFilter.java
+  UserFilter.java
+  WebLogAspect.java
