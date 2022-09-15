@@ -52,11 +52,20 @@ public class UserServiceImpl implements UserService {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        User user = userMapper.selectLogin(userName, password);
+        User user = userMapper.selectLogin(userName, md5PassWord);
         if(user==null){
             throw new LongZaiMallException(LongZaiMallExceptionEnum.WRONG_PASSWORD);
         }
         return user;
 
+    }
+
+    @Override
+    public  void updateInformation(User user) throws LongZaiMallException {
+        // 更新个性签名
+        int updateCount = userMapper.updateByPrimaryKeySelective(user);
+        if(updateCount >1){
+            throw new LongZaiMallException(LongZaiMallExceptionEnum.UPDATE_FAILED);
+        }
     }
 }

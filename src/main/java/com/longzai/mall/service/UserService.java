@@ -9,4 +9,6 @@ public interface UserService {
     void register(String userName,String passWord) throws LongZaiMallException;
 
     User login(String userName, String password) throws LongZaiMallException;
+
+    void updateInformation(User user) throws LongZaiMallException;
 }

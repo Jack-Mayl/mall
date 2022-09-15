@@ -64,6 +64,25 @@ public class UserController {
         login.setPassword(null);
         session.setAttribute(Constant.LONGZAI_MALL_USER,login);
         return ApiRestResponse.success(login);
+    }
+    @PostMapping("/user/update")
+    @ResponseBody
+    public ApiRestResponse updateUserInfo(HttpSession session,@RequestParam("signature") String signature) throws LongZaiMallException {
+        User currentUser = (User)session.getAttribute(Constant.LONGZAI_MALL_USER);
+        if(currentUser == null){
+            return ApiRestResponse.error(LongZaiMallExceptionEnum.NEED_LOGIN);
+        }
+        User user = new User();
+        user.setId(currentUser.getId());
+        user.setPersonalizedSignature(signature);
+        userService.updateInformation(user);
+        return ApiRestResponse.success();
+    }
+    @PostMapping("/user/logout")
+    @ResponseBody
+    public ApiRestResponse logout(HttpSession session){
+        session.removeAttribute(Constant.LONGZAI_MALL_USER);
+        return ApiRestResponse.success();
 
     }
 }
