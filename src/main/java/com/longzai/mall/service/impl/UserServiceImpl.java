@@ -68,4 +68,10 @@ public class UserServiceImpl implements UserService {
             throw new LongZaiMallException(LongZaiMallExceptionEnum.UPDATE_FAILED);
         }
     }
+
+    @Override
+    public boolean checkAdminRole(User user){
+        // 1.是普通用户 2是管理员
+        return  user.getRole().equals(2);
+    }
 }

@@ -85,4 +85,29 @@ public class UserController {
         return ApiRestResponse.success();
 
     }
+    @PostMapping("/adminLogin")
+    @ResponseBody
+    public ApiRestResponse adminLogin(
+            @RequestParam("userName") String userName,
+            @RequestParam("password") String password, HttpSession session) throws LongZaiMallException {
+        if (StringUtils.isEmpty(userName)) {
+            return ApiRestResponse.error(LongZaiMallExceptionEnum.NEED_USER_NAME);
+        }
+
+        if(StringUtils.isEmpty(password)){
+            return ApiRestResponse.error(LongZaiMallExceptionEnum.NEED_PASSWORD);
+        }
+        User login = userService.login(userName, password);
+        // 校验是否是管理员
+        if (userService.checkAdminRole(login)) {
+            // 是管理员 执行操作
+            // 保存用户信息时，不保存密码
+            login.setPassword(null);
+            session.setAttribute(Constant.LONGZAI_MALL_USER,login);
+            return ApiRestResponse.success(login);
+        }else{
+            return ApiRestResponse.error(LongZaiMallExceptionEnum.NEED_ADMIN);
+        }
+
+    }
 }

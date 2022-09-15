@@ -11,4 +11,6 @@ public interface UserService {
     User login(String userName, String password) throws LongZaiMallException;
 
     void updateInformation(User user) throws LongZaiMallException;
+
+    boolean checkAdminRole(User user);
 }
