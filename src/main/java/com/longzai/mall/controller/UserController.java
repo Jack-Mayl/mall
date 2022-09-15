@@ -1,6 +1,7 @@
 package com.longzai.mall.controller;
 
 import com.longzai.mall.common.ApiRestResponse;
+import com.longzai.mall.common.Constant;
 import com.longzai.mall.exception.LongZaiMallException;
 import com.longzai.mall.exception.LongZaiMallExceptionEnum;
 import com.longzai.mall.model.pojo.User;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * 描述： 用户控制器
@@ -32,6 +36,7 @@ public class UserController {
         if (StringUtils.isEmpty(userName)) {
             return ApiRestResponse.error(LongZaiMallExceptionEnum.NEED_USER_NAME);
         }
+
         if(StringUtils.isEmpty(password)){
             return ApiRestResponse.error(LongZaiMallExceptionEnum.NEED_PASSWORD);
         }
@@ -41,5 +46,24 @@ public class UserController {
         }
         userService.register(userName,password);
         return ApiRestResponse.success();
+    }
+    @PostMapping("/login")
+    @ResponseBody
+    public ApiRestResponse login(
+            @RequestParam("userName") String userName,
+            @RequestParam("password") String password, HttpSession session) throws LongZaiMallException {
+        if (StringUtils.isEmpty(userName)) {
+            return ApiRestResponse.error(LongZaiMallExceptionEnum.NEED_USER_NAME);
+        }
+
+        if(StringUtils.isEmpty(password)){
+            return ApiRestResponse.error(LongZaiMallExceptionEnum.NEED_PASSWORD);
+        }
+        User login = userService.login(userName, password);
+        // 保存用户信息时，不保存密码
+        login.setPassword(null);
+        session.setAttribute(Constant.LONGZAI_MALL_USER,login);
+        return ApiRestResponse.success(login);
+
     }
 }

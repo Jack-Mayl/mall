@@ -7,4 +7,6 @@ public interface UserService {
     User getUser();
 
     void register(String userName,String passWord) throws LongZaiMallException;
+
+    User login(String userName, String password) throws LongZaiMallException;
 }
