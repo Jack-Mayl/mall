@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
         // 查询用户名是否存在 不允许重名
         User result = userMapper.selectByName(userName);
         if(result != null){
-            throw  new LongZaiMallException(LongZaiMallExceptionEnum.NEED_USER_NAME);
+            throw  new LongZaiMallException(LongZaiMallExceptionEnum.NAME_EXISTED);
         }
         // 写到数据库
         User user = new User();
@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean checkAdminRole(User user){
+    public boolean checkAdminRole(User user) {
         // 1.是普通用户 2是管理员
         return  user.getRole().equals(2);
     }

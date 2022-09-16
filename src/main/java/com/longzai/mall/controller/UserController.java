@@ -30,6 +30,14 @@ public class UserController {
     public User personalPage(){
         return userService.getUser();
     }
+
+    /**
+     * 注册
+     * @param userName
+     * @param password
+     * @return
+     * @throws LongZaiMallException
+     */
     @PostMapping("/register")
     @ResponseBody
     public ApiRestResponse register(@RequestParam String userName,@RequestParam String password) throws LongZaiMallException {
@@ -47,6 +55,15 @@ public class UserController {
         userService.register(userName,password);
         return ApiRestResponse.success();
     }
+
+    /**
+     * 登陆
+     * @param userName
+     * @param password
+     * @param session
+     * @return
+     * @throws LongZaiMallException
+     */
     @PostMapping("/login")
     @ResponseBody
     public ApiRestResponse login(
@@ -65,6 +82,14 @@ public class UserController {
         session.setAttribute(Constant.LONGZAI_MALL_USER,login);
         return ApiRestResponse.success(login);
     }
+
+    /**
+     * 更新个性签名
+     * @param session
+     * @param signature
+     * @return
+     * @throws LongZaiMallException
+     */
     @PostMapping("/user/update")
     @ResponseBody
     public ApiRestResponse updateUserInfo(HttpSession session,@RequestParam("signature") String signature) throws LongZaiMallException {
@@ -78,6 +103,12 @@ public class UserController {
         userService.updateInformation(user);
         return ApiRestResponse.success();
     }
+
+    /**
+     * 登出清除Session
+     * @param session
+     * @return
+     */
     @PostMapping("/user/logout")
     @ResponseBody
     public ApiRestResponse logout(HttpSession session){
@@ -85,6 +116,15 @@ public class UserController {
         return ApiRestResponse.success();
 
     }
+
+    /**
+     * 管理员登陆接口
+     * @param userName
+     * @param password
+     * @param session
+     * @return
+     * @throws LongZaiMallException
+     */
     @PostMapping("/adminLogin")
     @ResponseBody
     public ApiRestResponse adminLogin(

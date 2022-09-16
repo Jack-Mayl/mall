@@ -1,6 +1,6 @@
 package com.longzai.mall.exception;
 
-public class LongZaiMallException extends Exception {
+public class LongZaiMallException extends RuntimeException {
     private final Integer code;
     private final String message;
 

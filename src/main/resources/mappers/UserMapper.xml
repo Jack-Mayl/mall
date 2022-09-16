@@ -126,7 +126,7 @@
     select
     <include refid="Base_Column_List"/>
 from imooc_mall_user
-where username = #{userName,jbdcType=VARCHAR}
+where username = #{userName,jdbcType=VARCHAR}
 and password=#{password,jdbcType=VARCHAR}
 
   </select>
