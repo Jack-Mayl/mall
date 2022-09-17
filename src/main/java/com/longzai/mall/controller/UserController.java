@@ -6,6 +6,7 @@ import com.longzai.mall.exception.LongZaiMallException;
 import com.longzai.mall.exception.LongZaiMallExceptionEnum;
 import com.longzai.mall.model.pojo.User;
 import com.longzai.mall.service.UserService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -26,6 +27,7 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/test")
+    @ApiOperation("测试")
     @ResponseBody
     public User personalPage(){
         return userService.getUser();
@@ -38,6 +40,7 @@ public class UserController {
      * @return
      * @throws LongZaiMallException
      */
+    @ApiOperation("注册")
     @PostMapping("/register")
     @ResponseBody
     public ApiRestResponse register(@RequestParam String userName,@RequestParam String password) throws LongZaiMallException {
@@ -64,6 +67,7 @@ public class UserController {
      * @return
      * @throws LongZaiMallException
      */
+    @ApiOperation("登陆")
     @PostMapping("/login")
     @ResponseBody
     public ApiRestResponse login(
@@ -90,6 +94,7 @@ public class UserController {
      * @return
      * @throws LongZaiMallException
      */
+    @ApiOperation("更新个性签名")
     @PostMapping("/user/update")
     @ResponseBody
     public ApiRestResponse updateUserInfo(HttpSession session,@RequestParam("signature") String signature) throws LongZaiMallException {
@@ -109,6 +114,7 @@ public class UserController {
      * @param session
      * @return
      */
+    @ApiOperation("登出清除session")
     @PostMapping("/user/logout")
     @ResponseBody
     public ApiRestResponse logout(HttpSession session){
@@ -116,7 +122,7 @@ public class UserController {
         return ApiRestResponse.success();
 
     }
-
+    @ApiOperation("管理员登陆")
     /**
      * 管理员登陆接口
      * @param userName
