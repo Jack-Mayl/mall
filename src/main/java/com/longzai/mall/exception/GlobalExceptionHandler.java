@@ -52,9 +52,9 @@ public class GlobalExceptionHandler {
             }
         }
         if(list.size() == 0){
-            return ApiRestResponse.error(LongZaiMallExceptionEnum.ReQUEST_PARAM_ERROR);
+            return ApiRestResponse.error(LongZaiMallExceptionEnum.REQUEST_PARAM_ERROR);
         }
-        return ApiRestResponse.error(LongZaiMallExceptionEnum.ReQUEST_PARAM_ERROR.getCode(),list.toString());
+        return ApiRestResponse.error(LongZaiMallExceptionEnum.REQUEST_PARAM_ERROR.getCode(),list.toString());
     }
 
 }

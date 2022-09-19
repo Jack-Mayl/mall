@@ -34,4 +34,17 @@ public class CategoryServiceImpl implements CategoryService {
             throw  new LongZaiMallException(LongZaiMallExceptionEnum.CREATE_FAILED);
         }
     }
+
+    @Override
+    public void delete(Integer id){
+        Category categoryOld = categoryMapper.selectByPrimaryKey(id);
+        // 查不到记录 无法删除 删除失败
+        if(categoryOld == null){
+            throw new LongZaiMallException(LongZaiMallExceptionEnum.DELETE_FAILED);
+        }
+        int i = categoryMapper.deleteByPrimaryKey(id);
+        if (i == 0){
+            throw new LongZaiMallException(LongZaiMallExceptionEnum.DELETE_FAILED);
+        }
+    }
 }
