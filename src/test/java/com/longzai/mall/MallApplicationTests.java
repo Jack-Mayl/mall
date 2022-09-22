@@ -10,8 +10,10 @@ class MallApplicationTests {
 
     @Test
     void contextLoads() {
-        int dayOfWeek = Calendar.DAY_OF_MONTH;
-        System.out.println(dayOfWeek);
+        Integer i=222;
+        Double i2=222.0;
+        boolean equals = i.equals(i2);
+        System.out.println(equals);
     }
 
 }
