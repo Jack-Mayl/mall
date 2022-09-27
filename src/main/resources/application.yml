@@ -22,3 +22,9 @@ mybatis:
 server:
   port: 8083
 debug: true
+
+
+# 上传文件的路径 根据部署情况 自行修改
+file:
+  upload:
+    dir: /Users/myl/IdeaProjects/longzai-mall-prepare-static/
